@@ -1,0 +1,27 @@
+version: '3'
+services:
+
+  wordpress:
+    image: wordpress
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_PASSWORD: immomat
+    volumes:
+      - web_data:/var/www/html
+      - .:/var/www/html/wp-content/plugins/immomat
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: immomat
+    volumes:
+      - db_data:/var/lib/mysql
+  piwik:
+    image: piwik
+    ports:
+      - 9000:80
+
+volumes:
+    db_data:
+    web_data:
